@@ -3,7 +3,7 @@ import pickle
 from streamlit_option_menu import option_menu
 import os
 import numpy as np
-working_dir = os.path.dirname(os.path.abspath(__file__))+'\\model_&_scaler\\'
+working_dir = os.path.dirname(os.path.abspath(__file__))+'\model_&_scaler\'
 working_dir_for_ad = os.getcwd()
 model_heart = pickle.load(open(f'{working_dir}heart_model.pkl','rb'))
 scaler_heart = pickle.load(open(f'{working_dir}heart_scaler.pkl','rb'))
@@ -345,5 +345,6 @@ if st.button('Enter'):
             st.write('Ai assistant:', response.text, '\n')
     except Exception as e:
         st.caption(f'An error occured(api key expired) {e}')
+
 
 
