@@ -3,8 +3,8 @@ import pickle
 from streamlit_option_menu import option_menu
 import os
 import numpy as np
-working_dir = os.path.dirname(os.path.abspath(__file__))+'\model_&_scaler\'
-working_dir_for_ad = os.getcwd()
+working_dir= os.path.dirname(os.path.abspath(__file__))+'\\model_&_scaler\\'
+working_dir_for_ad = os.path.dirname(os.path.abspath(__file__))+'\\animal_enc'
 model_heart = pickle.load(open(f'{working_dir}heart_model.pkl','rb'))
 scaler_heart = pickle.load(open(f'{working_dir}heart_scaler.pkl','rb'))
 
@@ -244,7 +244,7 @@ if select=='Lung Cancer':
 
 
 import pandas as pd
-df = pd.read_csv(f'{working_dir_for_ad}\\cleaned_animal_disease_prediction.csv')
+df = pd.read_csv(f'cleaned_animal_disease_prediction.csv')
 lst_animal_type = df['Animal_Type'].value_counts().index
 lst_breed = df['Breed'].value_counts().index
 lst_Symptom_1 = df['Symptom_1'].value_counts().index
@@ -252,13 +252,13 @@ lst_Symptom_2 = df['Symptom_2'].value_counts().index
 lst_Symptom_3 = df['Symptom_3'].value_counts().index
 lst_Symptom_4 = df['Symptom_4'].value_counts().index
 
-Animal_Type_enc = pickle.load(open(f'{working_dir_for_ad}\\animal_enc\\enc_animal_type.pkl','rb'))
-Breed_enc = pickle.load(open(f'{working_dir_for_ad}\\animal_enc\\enc_Breed.pkl','rb'))
-Symptom_1_enc = pickle.load(open(f'{working_dir_for_ad}\\animal_enc\\enc_Symptom_1.pkl','rb'))
-Symptom_2_enc = pickle.load(open(f'{working_dir_for_ad}\\animal_enc\\enc_Symptom_2.pkl','rb'))
-Symptom_3_enc = pickle.load(open(f'{working_dir_for_ad}\\animal_enc\\enc_Symptom_3.pkl','rb'))
-Symptom_4_enc = pickle.load(open(f'{working_dir_for_ad}\\animal_enc\\enc_Symptom_4.pkl','rb'))
-animal_model = pickle.load(open(f'{working_dir_for_ad}\\animal_enc\\animal_disease_model.pkl','rb'))
+Animal_Type_enc = pickle.load(open(f'{working_dir_for_ad}\\enc_animal_type.pkl','rb'))
+Breed_enc = pickle.load(open(f'{working_dir_for_ad}\\enc_Breed.pkl','rb'))
+Symptom_1_enc = pickle.load(open(f'{working_dir_for_ad}\\enc_Symptom_1.pkl','rb'))
+Symptom_2_enc = pickle.load(open(f'{working_dir_for_ad}\\enc_Symptom_2.pkl','rb'))
+Symptom_3_enc = pickle.load(open(f'{working_dir_for_ad}\\enc_Symptom_3.pkl','rb'))
+Symptom_4_enc = pickle.load(open(f'{working_dir_for_ad}\\enc_Symptom_4.pkl','rb'))
+animal_model = pickle.load(open(f'{working_dir_for_ad}\\animal_disease_model.pkl','rb'))
 
 if select=='Animal Disease':
     st.title(":red[Animal disease prediction]")
@@ -345,6 +345,7 @@ if st.button('Enter'):
             st.write('Ai assistant:', response.text, '\n')
     except Exception as e:
         st.caption(f'An error occured(api key expired) {e}')
+
 
 
 
